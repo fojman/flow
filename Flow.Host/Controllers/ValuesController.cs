@@ -39,7 +39,16 @@ namespace Flow.Controllers
         [HttpGet("{id}")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            using (_logger.BeginScope(new []
+            {
+                ("Session", HttpContext.TraceIdentifier),
+                ("Method", HttpContext.Request.Method)
+                
+            }))
+            {
+                _logger.LogInformation($"Get(id) called, {id}");
+                return $"id={id}";
+            }
         }
 
         // POST api/values
