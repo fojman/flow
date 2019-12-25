@@ -39,6 +39,8 @@ namespace Flow
 
             app.UseHttpsRedirection();
             app.UseMvc();
+			
+			logger.LogInformation("Building pipeline...Done.");
         }
     }
 }
